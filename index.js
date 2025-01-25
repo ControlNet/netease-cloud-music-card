@@ -35,6 +35,12 @@ const {
     }).catch(error => console.error(`无法获取用户播放记录 \n${error}`));
 
     const content = record.body;
+
+    if (content.weekData.length === 0) {
+        console.log("本周没有听歌记录");
+        return;
+    }
+
     const songId = content.weekData[0].song.id + '';
     const songLink = "https://music.163.com/#/song?id=" + songId
     const songName = content.weekData[0].song.name.replace("&", "&amp;");
